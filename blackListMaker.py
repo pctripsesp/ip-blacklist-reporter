@@ -11,17 +11,29 @@ Warning,Sistema,2017/11/01 17:11:42,SYSTEM,Host [92.111.181.206] was blocked via
 
 
 #LOG FILE PATH
-filename = "syslog_2017-11-1-17_30_31.csv"
-cont=0
+filename = "syslog_2017-11-1-17_30_32.csv"
+blackList = []
 
-with open(filename) as f:
-    while True:
-        line = f.readline()
-        if "was blocked via" in line:
-            start = line.find('[') + 1
-            end = line.find(']', start)
-            print(line[start:end])	
+def makeBL():
+    
+    with open(filename) as f:
+        while True:
+            line = f.readline()
+            if "was blocked via" in line:
+                start = line.find('[') + 1
+                end = line.find(']', start)
+                ip = line[start:end]
+                blackList.append(ip)               
 
-        if not line:
-            print("TOTAL --> "+str(cont)+" IP's listed")
-            break	
+            if not line:
+                break
+
+    return blackList
+	
+
+if __name__ == "__main__":
+    cont=0
+    for ip in makeBL():
+        print(ip)
+        cont+=1
+    print("TOTAL --> "+str(cont)+" IP's listed")	
