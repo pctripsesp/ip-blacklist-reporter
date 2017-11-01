@@ -12,6 +12,7 @@ Warning,Sistema,2017/11/01 17:11:42,SYSTEM,Host [92.111.181.206] was blocked via
 
 #LOG FILE PATH
 filename = "syslog_2017-11-1-17_30_31.csv"
+cont=0
 
 with open(filename) as f:
     while True:
@@ -22,4 +23,5 @@ with open(filename) as f:
             print(line[start:end])	
 
         if not line:
+            print("TOTAL --> "+str(cont)+" IP's listed")
             break	
