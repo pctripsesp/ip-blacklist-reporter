@@ -34,6 +34,7 @@ def makeBL():
 if __name__ == "__main__":
     cont=0
     for ip in makeBL():
-        print(ip)
-        cont+=1
-    print("TOTAL --> "+str(cont)+" IP's listed")	
+        if ip not in whiteList:
+            print(ip)
+            cont+=1
+        print("TOTAL --> "+str(cont)+" IP's listed")
