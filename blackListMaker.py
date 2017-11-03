@@ -37,4 +37,4 @@ if __name__ == "__main__":
         if ip not in whiteList:
             print(ip)
             cont+=1
-        print("TOTAL --> "+str(cont)+" IP's listed")
+    print("TOTAL --> "+str(cont)+" IP's listed")
