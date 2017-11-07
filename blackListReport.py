@@ -49,23 +49,25 @@ def reportFromBL():
     c=0
 
     while True:
-        data = report_IP(IP_BList[c])
-        c+=1
-
+        
         #CHECKS 60 REQUESTS/MIN LIMIT
-        if c%61 == 0:
+        if c%61==0 and c!=0:         
+            print(str(c)+'/'+str(IP_BList_len)+' REPORTED')
             print('sleeping 1 minute')
             sleep(62)
         
         # CHECKS IP_LIST LIMIT LENGTH
-        if c == IP_BList_len:
+        if c+1 == IP_BList_len:
             print("ALL IP'S HAS BEEN SUCCESFULLY REPORTED")
             break
 
         # CHECKS LAST IP REPORTED TO STOP REPORTING
-        if last_ip_reported  == IP_BList[c-1]:
+        if last_ip_reported  == IP_BList[c]:
             print(last_ip_reported +" HAS BEEN ALREADY REPORTED")
             break
+
+        data = report_IP(IP_BList[c])
+        c+=1
 
         # REPORTED OK
         try:
